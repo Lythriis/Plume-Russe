@@ -22,10 +22,63 @@
           <a href="#lecons">Leçons</a>
           <a href="#exercices">Exercices</a>
           <a href="#suivi">Suivi</a>
+          <a href="#compte">Espace perso</a>
           <a href="#apropos">À propos</a>
         </nav>
       </div>
     </header>
+
+    <!-- Écran d'inscription (affiché uniquement si aucun compte n'est encore créé) -->
+    <div id="signupOverlay" class="pr-overlay">
+      <div class="pr-overlay-card">
+        <h2>Bienvenue sur Plume Russe</h2>
+        <p>
+          Pour suivre ta progression, crée ton espace personnel. Tu pourras ensuite voir
+          tes leçons, tes exercices réussis et tes badges de récompense.
+        </p>
+        <form id="signupForm" class="pr-account-form pr-overlay-form">
+          <div class="pr-field">
+            <label for="signupNickname">Pseudo affiché sur le site</label>
+            <input
+              id="signupNickname"
+              name="nickname"
+              type="text"
+              class="pr-input"
+              autocomplete="nickname"
+              placeholder="Choisis un pseudo"
+              required
+            />
+          </div>
+          <div class="pr-field">
+            <label for="signupFullName">Nom complet (facultatif)</label>
+            <input
+              id="signupFullName"
+              name="fullName"
+              type="text"
+              class="pr-input"
+              autocomplete="name"
+              placeholder="Ton nom et prénom"
+            />
+          </div>
+          <div class="pr-field">
+            <label for="signupAge">Âge (facultatif)</label>
+            <input
+              id="signupAge"
+              name="age"
+              type="number"
+              min="1"
+              max="120"
+              class="pr-input"
+              placeholder="Ton âge"
+            />
+          </div>
+          <button type="submit" class="pr-btn pr-btn-primary">
+            Créer mon compte
+          </button>
+          <p class="pr-feedback" id="signupFeedback"></p>
+        </form>
+      </div>
+    </div>
 
     <main>
       <!-- Accueil / Hero -->
@@ -36,6 +89,9 @@
             <p class="pr-hero-subtitle">
               Un espace dédié à votre amie pour s'entraîner, progresser et suivre ses cours
               avec vous comme professeur.
+            </p>
+            <p class="pr-hero-subtitle pr-hero-subtitle-small" id="heroProfileLine">
+              Bienvenue ! Crée ton espace personnel pour suivre ta progression.
             </p>
             <div class="pr-hero-actions">
               <button id="startLessonBtn" class="pr-btn pr-btn-primary">
@@ -108,10 +164,6 @@
             </article>
           </div>
 
-          <div class="pr-note">
-            Cette section est un modèle. Vous pourrez dupliquer ces cartes pour créer
-            autant de leçons que nécessaire.
-          </div>
         </div>
       </section>
 
@@ -168,10 +220,6 @@
                 </button>
                 <p class="pr-feedback" data-feedback></p>
               </form>
-              <p class="pr-hint">
-                Astuce prof : tu peux changer la réponse attendue directement dans le code
-                de la page.
-              </p>
             </article>
           </div>
         </div>
@@ -227,8 +275,126 @@
         </div>
       </section>
 
+      <!-- Espace personnel -->
+      <section id="compte" class="pr-section pr-section-alt">
+        <div class="pr-container">
+          <header class="pr-section-header">
+            <h2>Espace personnel</h2>
+            <p>
+              Crée ton profil pour que le site affiche ton pseudo, ton âge et suive ton
+              progression avec des badges de récompense.
+            </p>
+          </header>
+
+          <div class="pr-grid-2 pr-account-grid">
+            <div class="pr-card">
+              <h3>Créer / mettre à jour mon compte</h3>
+              <form id="accountForm" class="pr-account-form">
+                <div class="pr-field">
+                  <label for="fullName">Nom complet</label>
+                  <input
+                    id="fullName"
+                    name="fullName"
+                    type="text"
+                    class="pr-input"
+                    autocomplete="name"
+                    placeholder="Ton nom et prénom"
+                  />
+                </div>
+                <div class="pr-field">
+                  <label for="age">Âge</label>
+                  <input
+                    id="age"
+                    name="age"
+                    type="number"
+                    min="1"
+                    max="120"
+                    class="pr-input"
+                    placeholder="Ton âge"
+                  />
+                </div>
+                <div class="pr-field">
+                  <label for="nickname">Pseudo affiché sur le site</label>
+                  <input
+                    id="nickname"
+                    name="nickname"
+                    type="text"
+                    class="pr-input"
+                    autocomplete="nickname"
+                    placeholder="Choisis un pseudo sympa"
+                  />
+                </div>
+                <button type="submit" class="pr-btn pr-btn-primary">
+                  Enregistrer mon profil
+                </button>
+                <p class="pr-feedback" id="accountFeedback"></p>
+              </form>
+            </div>
+
+            <div class="pr-card pr-account-summary">
+              <h3>Mon espace</h3>
+              <p id="accountWelcome">
+                Aucun profil enregistré pour le moment. Commence par remplir le formulaire à
+                gauche.
+              </p>
+              <ul class="pr-stats pr-stats-vertical pr-account-stats">
+                <li>
+                  <span class="label">Pseudo</span>
+                  <span class="value" id="summaryNickname">–</span>
+                </li>
+                <li>
+                  <span class="label">Nom</span>
+                  <span class="value" id="summaryFullName">–</span>
+                </li>
+                <li>
+                  <span class="label">Âge</span>
+                  <span class="value" id="summaryAge">–</span>
+                </li>
+                <li>
+                  <span class="label">Leçons complétées</span>
+                  <span class="value" id="summaryLessons">0</span>
+                </li>
+                <li>
+                  <span class="label">Exercices réussis</span>
+                  <span class="value" id="summaryExercises">0</span>
+                </li>
+                <li>
+                  <span class="label">Temps passé sur le site</span>
+                  <span class="value" id="summaryTimeSpent">0 min</span>
+                </li>
+              </ul>
+
+              <div class="pr-account-badges">
+                <h4>Badges de progression</h4>
+                <div class="pr-badges-grid" id="badgesGrid">
+                  <!-- Badges générés par JavaScript -->
+                </div>
+                <p class="pr-hint">
+                  Les badges se débloqueront automatiquement en fonction de tes progrès
+                  (par exemple : première leçon terminée, 10 exercices réussis, etc.).
+                </p>
+              </div>
+
+              <div class="pr-account-goals">
+                <h4>Mes objectifs</h4>
+                <p class="pr-hint">
+                  Note ici ce que tu veux travailler ou atteindre (par exemple : "connaître
+                  tout l'alphabet", "tenir une petite conversation", "réviser 10 minutes
+                  par jour").
+                </p>
+                <textarea
+                  id="learnerGoals"
+                  class="pr-textarea"
+                  placeholder="Mes objectifs de russe..."
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- À propos -->
-      <section id="apropos" class="pr-section pr-section-alt">
+      <section id="apropos" class="pr-section">
         <div class="pr-container pr-about">
           <div>
             <h2>À propos de Plume Russe</h2>
@@ -267,6 +433,7 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="espace-perso.js"></script>
   </body>
 </html>
 

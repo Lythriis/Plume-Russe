@@ -1,5 +1,5 @@
+// === SECTION 1 – Cœur de la progression (profil local, stats) ===
 // Gestion d'un petit "profil" stocké dans le navigateur (localStorage)
-
 const STORAGE_KEY = "plume-russe-progress-v1";
 
 function loadState() {
@@ -11,6 +11,13 @@ function loadState() {
         exercisesPassed: 0,
         lastActivity: null,
         teacherNotes: "",
+        fullName: "",
+        age: "",
+        nickname: "",
+        totalTimeMs: 0,
+        hasRegistered: false,
+        createdAt: null,
+        learnerGoals: "",
       };
     }
     const parsed = JSON.parse(raw);
@@ -19,6 +26,13 @@ function loadState() {
       exercisesPassed: parsed.exercisesPassed ?? 0,
       lastActivity: parsed.lastActivity ?? null,
       teacherNotes: parsed.teacherNotes ?? "",
+      fullName: parsed.fullName ?? "",
+      age: parsed.age ?? "",
+      nickname: parsed.nickname ?? "",
+      totalTimeMs: parsed.totalTimeMs ?? 0,
+      hasRegistered: parsed.hasRegistered ?? false,
+      createdAt: parsed.createdAt ?? null,
+      learnerGoals: parsed.learnerGoals ?? "",
     };
   } catch {
     return {
@@ -26,6 +40,13 @@ function loadState() {
       exercisesPassed: 0,
       lastActivity: null,
       teacherNotes: "",
+      fullName: "",
+      age: "",
+      nickname: "",
+      totalTimeMs: 0,
+      hasRegistered: false,
+      createdAt: null,
+      learnerGoals: "",
     };
   }
 }
@@ -47,6 +68,7 @@ function formatDate(dateStr) {
   });
 }
 
+// === SECTION 2 – Mise à jour de l'interface (tableau de bord, suivi) ===
 function updateUI(state) {
   const lessons = state.lessonsCompleted;
   const exercises = state.exercisesPassed;
@@ -87,6 +109,7 @@ function updateUI(state) {
   }
 }
 
+// === SECTION 3 – Actions de progression (terminer une leçon / un exercice) ===
 function bumpLesson(state) {
   const next = { ...state };
   next.lessonsCompleted += 1;
@@ -105,15 +128,20 @@ function bumpExercise(state) {
   return next;
 }
 
+// === SECTION 4 – Initialisation des interactions de base ===
+// Boutons, exercices, notes professeur. Les futures fonctionnalités (badges,
+// inscriptions, surprises, modération) pourront avoir leurs propres blocs ici.
 document.addEventListener("DOMContentLoaded", () => {
   const yearEl = document.getElementById("year");
   if (yearEl) {
     yearEl.textContent = String(new Date().getFullYear());
   }
 
+  // Sous-section 4.1 – Chargement de l'état actuel
   let state = loadState();
   updateUI(state);
 
+  // Sous-section 4.2 – Accueil (boutons principaux)
   // Bouton "Commencer la prochaine leçon" : on incrémente une leçon terminée
   const startLessonBtn = document.getElementById("startLessonBtn");
   if (startLessonBtn) {
@@ -135,6 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Sous-section 4.3 – Navigation des leçons
   // Boutons "Ouvrir la leçon" : pour l'instant, on fait défiler vers la section exercices
   document.querySelectorAll(".lesson-open-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -142,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Exercices QCM
+  // Sous-section 4.4 – Exercices (QCM)
   document.querySelectorAll(".pr-quiz").forEach((form) => {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -171,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Exercices de saisie texte
+  // Sous-section 4.5 – Exercices (réponse libre)
   document.querySelectorAll(".pr-input-exercise").forEach((form) => {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -203,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Notes professeur
+  // Sous-section 4.6 – Notes professeur (espace perso professeur)
   const notes = document.getElementById("teacherNotes");
   if (notes) {
     notes.addEventListener("input", () => {
@@ -211,5 +240,11 @@ document.addEventListener("DOMContentLoaded", () => {
       saveState(state);
     });
   }
+
+  // === SECTION 5 – Place réservée (future) ===
+  // 5.1 – Badges & récompenses visuelles
+  // 5.2 – Espace personnel élève (compte, pseudo, avatar)
+  // 5.3 – Modération / administration (réinitialiser la progression, cacher/montrer des surprises)
+  // 5.4 – Features cachées / surprises (débloquées selon la progression)
 });
 
