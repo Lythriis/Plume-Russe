@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plume Russe • Cours de russe en ligne</title>
+    <meta
+      name="description"
+      content="Plume Russe – Cours de russe en ligne, exercices interactifs et suivi personnalisé."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="pr-header">
+      <div class="pr-container pr-header-inner">
+        <div class="pr-logo">
+          <span class="pr-logo-icon">✒️</span>
+          <span class="pr-logo-text">Plume Russe</span>
+        </div>
+        <nav class="pr-nav">
+          <a href="#accueil">Accueil</a>
+          <a href="#lecons">Leçons</a>
+          <a href="#exercices">Exercices</a>
+          <a href="#suivi">Suivi</a>
+          <a href="#apropos">À propos</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Accueil / Hero -->
+      <section id="accueil" class="pr-section pr-hero">
+        <div class="pr-container pr-hero-grid">
+          <div class="pr-hero-text">
+            <h1>Apprendre le russe avec <span class="accent">Plume Russe</span></h1>
+            <p class="pr-hero-subtitle">
+              Un espace dédié à votre amie pour s'entraîner, progresser et suivre ses cours
+              avec vous comme professeur.
+            </p>
+            <div class="pr-hero-actions">
+              <button id="startLessonBtn" class="pr-btn pr-btn-primary">
+                Commencer la prochaine leçon
+              </button>
+              <button id="continueBtn" class="pr-btn pr-btn-ghost">
+                Continuer là où je me suis arrêtée
+              </button>
+            </div>
+            <p class="pr-progress-summary" id="progressSummary">
+              Aucune progression enregistrée pour le moment.
+            </p>
+          </div>
+          <div class="pr-hero-card">
+            <div class="pr-hero-card-inner">
+              <h2>Tableau de bord rapide</h2>
+              <ul class="pr-stats">
+                <li>
+                  <span class="label">Leçons complétées</span>
+                  <span class="value" id="statLessons">0</span>
+                </li>
+                <li>
+                  <span class="label">Exercices réussis</span>
+                  <span class="value" id="statExercises">0</span>
+                </li>
+                <li>
+                  <span class="label">Dernière activité</span>
+                  <span class="value" id="statLastActivity">–</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Leçons -->
+      <section id="lecons" class="pr-section">
+        <div class="pr-container">
+          <header class="pr-section-header">
+            <h2>Leçons</h2>
+            <p>
+              Structure de base des leçons. Vous pourrez ensuite remplir chaque leçon avec
+              vos propres contenus (textes, audio, vidéos, devoirs).
+            </p>
+          </header>
+
+          <div class="pr-grid-3">
+            <article class="pr-card pr-lesson-card" data-lesson-id="1">
+              <h3>Leçon 1 – Alphabet cyrillique</h3>
+              <p>Découverte des lettres russes, prononciation et premières lectures.</p>
+              <button class="pr-btn pr-btn-secondary lesson-open-btn">
+                Ouvrir la leçon
+              </button>
+            </article>
+
+            <article class="pr-card pr-lesson-card" data-lesson-id="2">
+              <h3>Leçon 2 – Salutations de base</h3>
+              <p>Dire bonjour, au revoir, se présenter simplement en russe.</p>
+              <button class="pr-btn pr-btn-secondary lesson-open-btn">
+                Ouvrir la leçon
+              </button>
+            </article>
+
+            <article class="pr-card pr-lesson-card" data-lesson-id="3">
+              <h3>Leçon 3 – Vocabulaire du quotidien</h3>
+              <p>Mots fréquents pour les objets, lieux et actions de tous les jours.</p>
+              <button class="pr-btn pr-btn-secondary lesson-open-btn">
+                Ouvrir la leçon
+              </button>
+            </article>
+          </div>
+
+          <div class="pr-note">
+            Cette section est un modèle. Vous pourrez dupliquer ces cartes pour créer
+            autant de leçons que nécessaire.
+          </div>
+        </div>
+      </section>
+
+      <!-- Exercices -->
+      <section id="exercices" class="pr-section pr-section-alt">
+        <div class="pr-container">
+          <header class="pr-section-header">
+            <h2>Exercices interactifs</h2>
+            <p>
+              Exemple d'exercices simples. Les réponses sont corrigées automatiquement dans
+              le navigateur, sans serveur.
+            </p>
+          </header>
+
+          <div class="pr-exercise-list">
+            <!-- Exemple 1: QCM -->
+            <article class="pr-card pr-exercise-card" data-exercise-id="1">
+              <h3>Exercice 1 – Salutations</h3>
+              <p>Choisis la traduction correcte de « Bonjour » en russe :</p>
+              <form class="pr-quiz" data-correct="2">
+                <label>
+                  <input type="radio" name="q1" value="1" />
+                  Спасибо
+                </label>
+                <label>
+                  <input type="radio" name="q1" value="2" />
+                  Здравствуйте
+                </label>
+                <label>
+                  <input type="radio" name="q1" value="3" />
+                  Пока
+                </label>
+                <button type="submit" class="pr-btn pr-btn-primary">
+                  Vérifier
+                </button>
+                <p class="pr-feedback" data-feedback></p>
+              </form>
+            </article>
+
+            <!-- Exemple 2: champ texte -->
+            <article class="pr-card pr-exercise-card" data-exercise-id="2">
+              <h3>Exercice 2 – Traduction</h3>
+              <p>Écris en russe le mot « merci » :</p>
+              <form class="pr-input-exercise" data-answer="спасибо">
+                <input
+                  type="text"
+                  class="pr-input"
+                  name="answer"
+                  autocomplete="off"
+                  placeholder="Tape ta réponse ici"
+                />
+                <button type="submit" class="pr-btn pr-btn-primary">
+                  Vérifier
+                </button>
+                <p class="pr-feedback" data-feedback></p>
+              </form>
+              <p class="pr-hint">
+                Astuce prof : tu peux changer la réponse attendue directement dans le code
+                de la page.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Suivi -->
+      <section id="suivi" class="pr-section">
+        <div class="pr-container">
+          <header class="pr-section-header">
+            <h2>Suivi de progression</h2>
+            <p>
+              Ces informations sont stockées uniquement dans le navigateur de ton amie
+              (localement, grâce au stockage du navigateur).
+            </p>
+          </header>
+
+          <div class="pr-grid-2">
+            <div class="pr-card">
+              <h3>Résumé</h3>
+              <ul class="pr-stats pr-stats-vertical">
+                <li>
+                  <span class="label">Leçons complétées</span>
+                  <span class="value" id="detailLessons">0</span>
+                </li>
+                <li>
+                  <span class="label">Exercices réussis</span>
+                  <span class="value" id="detailExercises">0</span>
+                </li>
+                <li>
+                  <span class="label">Dernière activité</span>
+                  <span class="value" id="detailLastActivity">–</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pr-card">
+              <h3>Espace professeur</h3>
+              <p>
+                Tu peux utiliser cette zone pour noter les objectifs de ta prochaine séance,
+                les devoirs à donner, ou les remarques pédagogiques.
+              </p>
+              <textarea
+                id="teacherNotes"
+                class="pr-textarea"
+                placeholder="Notes de cours, consignes, progression à surveiller..."
+              ></textarea>
+              <div class="pr-note">
+                Ces notes sont aussi enregistrées dans le navigateur et ne quittent pas
+                l'ordinateur.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- À propos -->
+      <section id="apropos" class="pr-section pr-section-alt">
+        <div class="pr-container pr-about">
+          <div>
+            <h2>À propos de Plume Russe</h2>
+            <p>
+              Plume Russe est un site conçu sur mesure pour aider ton amie à apprendre le
+              russe avec toi. Le but est de combiner le côté humain du cours avec des
+              exercices interactifs et un suivi simple.
+            </p>
+            <p>
+              Cette première version pose la structure : tu pourras ensuite l'adapter,
+              ajouter tes propres leçons, enregistrer des exemples audio, et enrichir les
+              exercices.
+            </p>
+          </div>
+          <div class="pr-card pr-about-card">
+            <h3>Prochaines évolutions possibles</h3>
+            <ul class="pr-list">
+              <li>Ajouter plus de leçons avec textes et audio</li>
+              <li>Créer des chemins de progression (A1, A2, B1…)</li>
+              <li>Exporter le suivi pour que tu puisses le consulter</li>
+              <li>Relier le site à un compte GitHub pour publier automatiquement</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="pr-footer">
+      <div class="pr-container pr-footer-inner">
+        <p>© <span id="year"></span> Plume Russe – Tous droits réservés.</p>
+        <p class="pr-footer-small">
+          Site statique hébergé sur GitHub Pages. Conçu pour être modifiable sans
+          connaissances techniques avancées.
+        </p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
